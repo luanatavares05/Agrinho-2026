@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz - Agro Forte, Futuro Sustentável</title>
+
+    <title>Calculadora Rural - Agro Forte</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,41 +41,54 @@
 
 <section class="hero-pequeno">
 
-    <h1>Quiz do Agro Sustentável</h1>
+    <h1>Calculadora Rural Sustentável</h1>
 
-    <p>Responda às perguntas e veja quanto você sabe sobre sustentabilidade no campo.</p>
+    <p>
+        Informe a área da propriedade e descubra sugestões de práticas sustentáveis.
+    </p>
 
 </section>
 
 <section class="secao">
 
-    <button onclick="abrirQuiz()" class="botao">
-        Iniciar Quiz
-    </button>
+    <div class="card">
 
-    <br><br>
+        <h2>Tamanho da propriedade</h2>
 
-    <p>
-        O quiz possui perguntas sobre MIP, Agricultura Regenerativa,
-        Agricultura de Baixo Carbono, ILPF, Agroflorestas,
-        Silvicultura e preservação ambiental.
-    </p>
+        <input
+            type="number"
+            id="hectares"
+            placeholder="Ex.: 25">
+
+        <br><br>
+
+        <button onclick="calcularArea()">
+            Calcular
+        </button>
+
+        <br><br>
+
+        <div id="resultado"></div>
+
+    </div>
+
+    <br>
 
     <div class="cards">
 
         <div class="card">
-            <h3>🧠 Aprenda</h3>
-            <p>Teste seus conhecimentos sobre práticas agrícolas sustentáveis.</p>
+            <h3>🌱 Pequenas propriedades</h3>
+            <p>Hortas, compostagem, irrigação eficiente e agricultura orgânica.</p>
         </div>
 
         <div class="card">
-            <h3>🌱 Reflita</h3>
-            <p>Entenda como pequenas atitudes podem proteger o meio ambiente.</p>
+            <h3>🚜 Médias propriedades</h3>
+            <p>Rotação de culturas, MIP, plantio direto e recuperação do solo.</p>
         </div>
 
         <div class="card">
-            <h3>🏆 Desafie-se</h3>
-            <p>Tente acertar todas as perguntas do quiz.</p>
+            <h3>🌳 Grandes propriedades</h3>
+            <p>ILPF, reflorestamento, energia limpa e preservação das áreas nativas.</p>
         </div>
 
     </div>

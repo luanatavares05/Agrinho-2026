@@ -1,90 +1,166 @@
- const perguntas = [
-        {
-        pergunta:"Qual prática ajuda a reduzir a emissão de gases de efeito estufa?",
-        opcoes:["Agricultura de Baixo Carbono","Queimadas","Desmatamento"],
-        correta:0
-        },
-        {
-        pergunta:"O MIP significa:",
-        opcoes:["Manejo Integrado de Pragas","Máquina Inteligente de Plantio","Método Industrial de Produção"],
-        correta:0
-        },
-        {
-        pergunta:"Qual recurso natural deve ser preservado para garantir a produção agrícola?",
-        opcoes:["Água","Poluição","Lixo"],
-        correta:0
-        }
-        ];
+// ==========================
+// CALCULADORA
+// ==========================
 
-        let perguntaAtual = 0;
-        let pontos = 0;
+function calcularArea() {
 
-        function carregarPergunta(){
+    const hectares = Number(document.getElementById("hectares").value);
+    const resultado = document.getElementById("resultado");
 
-        document.querySelector("#quiz strong").innerHTML =
-        perguntas[perguntaAtual].pergunta;
+    if (isNaN(hectares) || hectares <= 0) {
 
-        const botoes = document.querySelectorAll("#quiz button");
+        resultado.innerHTML = "Digite um valor válido.";
 
-        botoes.forEach((botao,i)=>{
-        botao.innerHTML = perguntas[perguntaAtual].opcoes[i];
-        botao.onclick = ()=>responder(i);
-        });
+        return;
 
-        document.getElementById("resultado").innerHTML="";
-        }
+    }
 
-        function responder(opcao){
+    if (hectares <= 5) {
 
-        if(opcao===perguntas[perguntaAtual].correta){
+        resultado.innerHTML =
+        "🌱 Propriedade pequena: invista em hortas, compostagem, agricultura orgânica e irrigação econômica.";
+
+    }
+
+    else if (hectares <= 30) {
+
+        resultado.innerHTML =
+        "🚜 Propriedade média: utilize rotação de culturas, MIP, plantio direto e recuperação do solo.";
+
+    }
+
+    else if (hectares <= 100) {
+
+        resultado.innerHTML =
+        "🌳 Propriedade grande: utilize ILPF, reflorestamento, preservação das nascentes e Agricultura de Baixo Carbono.";
+
+    }
+
+    else {
+
+        resultado.innerHTML =
+        "🌎 Grande área: invista em energia renovável, monitoramento ambiental e conservação das áreas nativas.";
+
+    }
+
+}
+
+// ==========================
+// QUIZ
+// ==========================
+
+function abrirQuiz(){
+
+    let pontos = 0;
+
+    let r1 = prompt("1) O que significa MIP?\n\nA) Manejo Integrado de Pragas\nB) Método Internacional de Plantio\nC) Monitoramento Industrial");
+
+    if(r1 && r1.toUpperCase()=="A"){
         pontos++;
-        document.getElementById("resultado").innerHTML="✅ Resposta correta!";
-        }else{
-        document.getElementById("resultado").innerHTML="❌ Resposta incorreta!";
+    }
+
+    let r2 = prompt("2) O Plano ABC+ busca:\n\nA) Aumentar o desmatamento\nB) Reduzir a emissão de carbono\nC) Produzir menos alimentos");
+
+    if(r2 && r2.toUpperCase()=="B"){
+        pontos++;
+    }
+
+    let r3 = prompt("3) ILPF significa:\n\nA) Integração Lavoura-Pecuária-Floresta\nB) Integração Local de Plantio Florestal\nC) Instituto Legal de Produção Florestal");
+
+    if(r3 && r3.toUpperCase()=="A"){
+        pontos++;
+    }
+
+    let r4 = prompt("4) A agricultura regenerativa tem como objetivo:\n\nA) Recuperar o solo\nB) Aumentar a poluição\nC) Derrubar florestas");
+
+    if(r4 && r4.toUpperCase()=="A"){
+        pontos++;
+    }
+
+    let r5 = prompt("5) Qual prática ajuda a preservar o meio ambiente?\n\nA) Queimadas\nB) Desmatamento\nC) Agroflorestas");
+
+    if(r5 && r5.toUpperCase()=="C"){
+        pontos++;
+    }
+
+    alert("Você acertou " + pontos + " de 5 perguntas! 🌱");
+
+}
+
+// ==========================
+// ANIMAÇÃO DOS CARDS
+// ==========================
+
+const cards = document.querySelectorAll(".card");
+
+const observer = new IntersectionObserver(function(entries){
+
+    entries.forEach(function(entry){
+
+        if(entry.isIntersecting){
+
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0px)";
+
         }
 
-        setTimeout(()=>{
+    });
 
-        perguntaAtual++;
+});
 
-        if(perguntaAtual<perguntas.length){
+cards.forEach(function(card){
 
-        carregarPergunta();
+    card.style.opacity = "0";
+    card.style.transform = "translateY(30px)";
+    card.style.transition = ".8s";
 
-        }else{
+    observer.observe(card);
 
-        document.querySelector("#quiz .card").innerHTML=
-        `<h3>Você terminou!</h3>
-        <p>Você acertou ${pontos} de ${perguntas.length} perguntas.</p>`;
+});
 
-        }
+// ==========================
+// BOTÃO VOLTAR AO TOPO
+// ==========================
 
-        },1200);
+const topo = document.createElement("button");
 
-        }
+topo.innerHTML = "⬆";
 
-        window.onload=carregarPergunta;
+topo.style.position = "fixed";
+topo.style.right = "20px";
+topo.style.bottom = "20px";
+topo.style.display = "none";
+topo.style.borderRadius = "50%";
+topo.style.width = "50px";
+topo.style.height = "50px";
+topo.style.fontSize = "22px";
 
-                            // Destaca o link do menu conforme a seção visível
-                            const links = document.querySelectorAll("nav a");
-                            const secoes = document.querySelectorAll("section");
+document.body.appendChild(topo);
 
-                            window.addEventListener("scroll", () => {
-                                let atual = "";
+window.addEventListener("scroll", function(){
 
-                                    secoes.forEach(secao => {
-                                            const topo = secao.offsetTop - 150;
+    if(window.scrollY > 350){
 
-                                                    if (scrollY >= topo) {
-                                                                atual = secao.getAttribute("id");
-                                                                        }
-                                                                            });
+        topo.style.display = "block";
 
-                                                                                links.forEach(link => {
-                                                                                        link.style.color = "white";
+    }else{
 
-                                                                                                if (link.getAttribute("href") === "#" + atual) {
-                                                                                                            link.style.color = "#C8E6C9";
-                                                                                                                    }
-                                                                                                                        });
-                                                                                                                        });
+        topo.style.display = "none";
+
+    }
+
+});
+
+topo.addEventListener("click", function(){
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+});
+
+console.log("Projeto Agrinho carregado com sucesso!");
