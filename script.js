@@ -163,4 +163,20 @@ topo.addEventListener("click", function(){
 
 });
 
+let tamanhoFonte = 100;
+
+function aumentarFonte(){
+    tamanhoFonte += 10;
+    document.body.style.fontSize = tamanhoFonte + "%";
+}
+
+function diminuirFonte(){
+    tamanhoFonte -= 10;
+    document.body.style.fontSize = tamanhoFonte + "%";
+}
+
+function modoEscuro(){
+    document.body.classList.toggle("escuro");
+}
+
 console.log("Projeto Agrinho carregado com sucesso!");
